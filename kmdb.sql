@@ -72,8 +72,6 @@ DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS directors;
 DROP TABLE IF EXISTS persons;
-DROP TABLE IF EXISTS cast;
-DROP TABLE IF EXISTS top cast;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS characters;
 
@@ -92,19 +90,33 @@ id INTEGER PRIMARY KEY AUTOINCREMENT,
 title TEXT,
 release_year TEXT,
 rating TEXT,
-director TEXT
+director_id INTEGER
 );
 
-CREATE TABLE top cast (
+CREATE TABLE roles (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
-movies_id INTEGER,
-actor TEXT,
+movie_id INTEGER,
+person_id INTEGER,
 role TEXT
 );
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
+
+INSERT INTO persons (first_name,last_name)
+VALUES ("Christopher","Nolan"),("Christian","Bale"),("Michael","Caine"),("Liam","Neeson"),("Katie","Holmes"),("Gary","Oldman"),("Heath","Ledger"),("Aaron","Eckhart"),
+("Maggie","Gyllenhaal"),("Tom","Hardy"),("Joseph","Gordon-Levitt"),("Anne","Hathaway");
+
+INSERT INTO movies (title,release_year,rating,director_id)
+VALUES ("Batman Begins", "2005", "PG-13", 1), ("The Dark Knight", "2008", "PG-13", 1), ("The Dark Knight Rises", "2012", "PG-13", 1);
+
+INSERT INTO roles (movie_id,person_id,role)
+VALUES (
+1,2,"Bruce Wayne"),(1,3,"Alfred"),(1,4,"Ra's al-Ghul"), (1,5,"Rachel Dawes"), (1,6,"Commissioner Gordon"),
+(2,2,"Bruce Wayne"), (2,7,"The Joker"), (2,8,"Harvey Dent"), (2,3,"Alfred"), (2,9,"Rachel Dawes"),
+(3,2,"Bruce Wayne"), (3,6,"Commissioner Gordon"), (3,10,"Bane"), (3,11,"John Blake"), (3,12,"Selina Kyle"
+);
 
 -- Prints a header for the movies output
 .print "Movies"
