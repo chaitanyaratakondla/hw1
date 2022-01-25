@@ -125,6 +125,8 @@ VALUES (
 
 -- The SQL statement for the movies output
 -- TODO!
+SELECT Movies.Title, Movies.release_year, Movies.rating, persons.first_name, persons.last_name
+FROM movies INNER JOIN persons ON movies.director_id = persons.id;
 
 -- Prints a header for the cast output
 .print ""
@@ -135,3 +137,8 @@ VALUES (
 
 -- The SQL statement for the cast output
 -- TODO!
+SELECT movies.title, persons.first_name, persons.last_name, roles.role
+FROM roles
+INNER JOIN persons ON roles.person_id = persons.id
+INNER JOIN movies ON movies.id = roles.movie_id
+;
